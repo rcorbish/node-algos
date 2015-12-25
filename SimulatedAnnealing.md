@@ -8,8 +8,15 @@ greed gets us stuck where we're too afraid to take a risk and go 'the wrong way'
 provides a statistical test that says we need to make an apparent bad decision: in order to get out 
 of a rut. It's a heuristic that work rather well in many situations.
 
-## Pseudocode
+## How it works
 
+The solution state is repeatedly changed if a new state has lower energy, it will be accepted as the
+new solution. This way we are constantly improving the solution. However we can get stuck, sometimes
+we need to jump to an intermediate, higher energy state in order to progress. The decision on whether
+to permit a jump to the higher energy state mirrors a physical system: freezing of a liquid. As the
+liquid cools, the ability to readjust the molecules to form crystals is extremely limited.
+
+### Pseudocode
 This is not the best algorithm to use, but it shows the basic principal.
 
 ```
@@ -37,10 +44,11 @@ The SimulatedAnnealing is designed as an abstract class (in other language terms
 It is important to figure out a good cost metric for your solution space. For example a "traveling salesman"
 might well use the path length. 
 
+There are several constants (e.g. `INITIAL_TEMPERATURE`) defined in the code. Play with the constants in the code to tweak the convergence.
+
 ## Example
 
 [Bin Packing](https://en.wikipedia.org/wiki/Bin_packing_problem) is a problem which puts items into a set of bins, so that each bin has about the same total amount. Anytime you may ask "How do I share things evenly?" this may be of interest.
-Play with the constants in the code, this is an art not a science!!! (ducking for cover).
 
 For BinPacking we subclass ( as best as we can in javascript ) the SimulatedAnnealing function
 
