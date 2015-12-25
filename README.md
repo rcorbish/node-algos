@@ -37,21 +37,20 @@ greed gets us stuck where we're too afraid to take a risk and go 'the wrong way'
 provides a statistical test that says we need to make an apparent bad decision: in order to get out 
 of a rut. It's a heuristic that work rather well in many situations.
 
-Simple pseudocode (lame temp reduction and no early exit)
+Simple pseudocode (lame temp reduction and no early exit and definitely not optimized)
 ```
-current_energy = current_state.calculate_energy
 
 for T = 1000 to 0 step -1
+	current_energy = current_state.calculate_energy
 	new_state = do_a_random_state_change
 	new_energy = new_state.calculate_energy
-	delta = start_energy - new_energy  
-	energy_state = e ** -delta / kT
+	delta = new_energy - current_energy  
 	if new_energy < current_energy
-		current_state = new_state
-	else if e ^ delta / kT   // k  is Boltzmann's constant
-		current_state = new_state
+		current_state = new_state			// lower energy ( aka greedy decision )
+	else if ( e ** (-delta / kT) ) < random ( 0.0..1.0 ) 
+		current_state = new_state			// if delta is so bad - we may randomly accept it
 ```	
-Plaqy with the constants in the code, this is an art not a science!!! (ducking for cover).
+Play with the constants in the code, this is an art not a science!!! (ducking for cover).
 
 Note the actual source code has more detail, this is a simple introduction.
 
