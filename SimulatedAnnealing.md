@@ -2,7 +2,7 @@
 
 # SimulatedAnnealing
 
-## How does annealing work?
+## What is annealing?
 We know about 'greedy' algorithms - that make the best short-term decisions. Sometimes 
 greed gets us stuck where we're too afraid to take a risk and go 'the wrong way'. SimulatedAnnealing
 provides a statistical test that says we need to make an apparent bad decision: in order to get out 
@@ -133,5 +133,10 @@ var result = testBinPacking.anneal()  ;				// sort the bins evenly
 console.log( result.join( ",") ) ; 					// log the result
 ```
 
-### Tools
+### Future Improvements
+
+Support a means to change a solution state and revert. It may be too expensive to create copies
+of the solution frequently. For example in BinPacking, we could just remember what was swapped and
+swap them back again. We'd need to add a reject_solution method, and the solution would need to 
+have state. 
 

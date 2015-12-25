@@ -3,7 +3,9 @@
 # Algos
 
 This provides a simple framework to use to implement basic algorithms. Node JS is single-threaded, we
-can build efficient software to compensate.
+can build efficient software to compensate. The implementation of the examples is not optimal, but is
+meant to show the operation. In any case the performance gain from using an efficient algorithm
+is far superior to micro-optimizations.
 
 
 ## Usage
@@ -22,7 +24,7 @@ force answers (avenues) just can't work. By shutting them off early - impossible
 
 [Detailed documentation](Backtracking.md)
 
-###Graphs
+### Graphs
 
 When you have list of things that are related to one another - this provides a simple framework
 to borrow algorithms that have been built up over many years. 
