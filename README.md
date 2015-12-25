@@ -13,21 +13,21 @@ can build efficient software to compensate.
 When you have an problem that can't be solved for large data sets, we need some way to get to a 'good enough'
 solution. After all salesmen need to travel today!
 
-[Detailed documentation][SimulatedAnnealing.md]
+[Detailed documentation](SimulatedAnnealing.md)
 
 ### Backtracking
  
 When the only way to find the answer seems to be by brute force: look at this. Some of the brute
 force answers (avenues) just can't work. By shutting them off early - impossible becomes easy.
 
-[Detailed documentation][Backtracking.md]
+[Detailed documentation](Backtracking.md)
 
 ###Graphs
 
 When you have list of things that are related to one another - this provides a simple framework
 to borrow algorithms that have been built up over many years. 
 
-[Detailed documentation][Graphs.md]
+[Detailed documentation](Graphs.md)
  
 ## Examples
 

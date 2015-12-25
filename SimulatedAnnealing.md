@@ -39,7 +39,7 @@ might well use the path length.
 
 ## Example
 
-[Bin Packing][https://en.wikipedia.org/wiki/Bin_packing_problem] is a problem which puts items into a set of bins, so that each bin has about the same total amount. Anytime you may ask "How do I share things evenly?" this may be of interest.
+[Bin Packing](https://en.wikipedia.org/wiki/Bin_packing_problem) is a problem which puts items into a set of bins, so that each bin has about the same total amount. Anytime you may ask "How do I share things evenly?" this may be of interest.
 Play with the constants in the code, this is an art not a science!!! (ducking for cover).
 
 For BinPacking we subclass ( as best as we can in javascript ) the SimulatedAnnealing function
