@@ -1,7 +1,7 @@
 {
   "name": "algos",
   "description": "Simple implementation of basic algorithms.",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "main": "lib/algos.js",
   "keywords": [
     "algorithm",
@@ -22,10 +22,10 @@
     "url": "git://github.com/rcorbish/node-algos.git"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4.0.0"
   },
   "scripts": {
-    "test": "node tests"
+    "test": "node tests/tests"
   },
   "bugs": {
     "url": "https://github.com/rcorbish/node-algos/issues"

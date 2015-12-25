@@ -1,5 +1,5 @@
 
-var algos = require( "../lib/algos.js" ) ;
+var algos = require( "algos" ) ;
 
 //S I M U L A T E D  A N N E A L I N G
 //S I M U L A T E D  A N N E A L I N G
