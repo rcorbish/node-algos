@@ -50,7 +50,7 @@ function BinPacking( numBins ) {
 console.log( "Bin packing test - make bins alomst as full as each other.") ;
 
 BinPacking.prototype = new algos.SimulatedAnnealing();  // Here's where the inheritance occurs 
-BinPacking.prototype.constructor=BinPacking;       		// Otherwise instances of Cat would have a constructor of Mammal 
+BinPacking.prototype.constructor=BinPacking;       		 
 var testBinPacking = new BinPacking( 30 ) ;
 var initial_solution = testBinPacking.initial_solution() ;
 
@@ -97,7 +97,7 @@ function Combinations( numDigits ) {
 }
 
 Combinations.prototype = new algos.Backtrack();        // Here's where the inheritance occurs 
-Combinations.prototype.constructor=Combinations;       // Otherwise instances of Cat would have a constructor of Mammal 
+Combinations.prototype.constructor=Combinations;        
 var testCombinations = new Combinations( 4 ) ;
 
 //===================================
@@ -146,7 +146,7 @@ function Queens( board_size ) {
 
 
 Queens.prototype = new algos.Backtrack();        // Here's where the inheritance occurs 
-Queens.prototype.constructor=Queens;       // Otherwise instances of Cat would have a constructor of Mammal 
+Queens.prototype.constructor=Queens;       
 
 var queensAnswers = [ 0, 1,0,0,2,10,4,40,92,352 ] ;
 for( var i=1 ; i<10 ; i++ ) {
