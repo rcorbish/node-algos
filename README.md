@@ -124,15 +124,18 @@ function BinPacking( numBins ) {
 }
 ```
 
-var algos = require( "algos" ) ;
+Now we have a function to use (see above). Let's test it out. Pretty simple :)
+
+```javascript
+var algos = require( "algos" ) ;		// npm install algos 
 
 BinPacking.prototype = new algos.SimulatedAnnealing();  // Here's where the "inheritance" occurs 
 BinPacking.prototype.constructor=BinPacking;       		
 
-var testBinPacking = new BinPacking( 30 ) ;
-var result = testBinPacking.anneal()  ;
-console.log( result.join( ",") ) ; 
-
+var testBinPacking = new BinPacking( 30 ) ;			// 30 bins of random test data
+var result = testBinPacking.anneal()  ;				// sort the bins evenly
+console.log( result.join( ",") ) ; 					// log the result
+```
 
 ### Tools
 
