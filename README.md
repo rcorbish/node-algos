@@ -31,6 +31,28 @@ Look at tests/tests.js for some examples
 For this example we'll do a bucket fill. The problem is to put items into a set of bins  so that each 
 bin has about the same amount. anytime you may ask "How do I share things evenly?" this may be of interest.
 
+#### How does annealing work?
+We know about 'greedy' algorithms - that make the best short-term decisions. Sometimes 
+greed gets us stuck where we're too afraid to take a risk and go 'the wrong way'. SimulatedAnnealing
+provides a statistical test that says we need to make an apparent bad decision: in order to get out 
+of a rut. It's a heuristic that work rather well in many situations.
+
+Simple pseudocode (lame temp reduction and no early exit)
+```
+current_energy = current_state.calculate_energy
+
+for T = 1000 to 0 step -1
+	new_state = do_a_random_state_change
+	new_energy = new_state.calculate_energy
+	delta = start_energy - new_energy  
+	energy_state = e ** -delta / kT
+	if new_energy < current_energy
+		current_state = new_state
+	else if e ^ delta / kT   // k  is Boltzmann's constant
+		current_state = new_state
+```	
+Plaqy with the constants in the code, this is an art not a science!!! (ducking for cover).
+
 Note the actual source code has more detail, this is a simple introduction.
 
 For BinPacking we subclass ( as best as we can in javascript ) the SimulatedAnnealing function
@@ -38,13 +60,16 @@ For BinPacking we subclass ( as best as we can in javascript ) the SimulatedAnne
 ```javascript
 
 /**
-	define the BinPacking class, it takes an argument the number of bins to fill up
+	define the BinPacking class, it takes an argument: the number of bins to fill up
 */
 function BinPacking( numBins ) {
-	this.numBins = numBins ;						// keep the arg - we'll use it frequently 
-	
-	this.initial_solution = function() {		// Initial solution function defines the starting state
-		var bins = [] ;
+	this.numBins = numBins ;						 
+	/**
+	Initial solution function defines the starting state. This is just something 
+	silly for testing.
+	*/
+	this.initial_solution = function() {		
+		var bins = [] ;		// this is the solution state
 		for( var i=0 ; i<numBins ; i++ ) {
 			bins[i] = [ i, i, i, i, i, i ] ;
 		}
@@ -52,7 +77,8 @@ function BinPacking( numBins ) {
 	}
 	
 	/**
-		how much does a solution cost
+		how much does a solution cost. Make sure you have a 
+		metric that measures the effective energy of a solution
 	*/
 	this.solution_cost = function( solution ) {		
 		var rc = 0 ;
@@ -67,9 +93,12 @@ function BinPacking( numBins ) {
 	}
 	
 	/**
-		Make a random transition - in our case we'll swap an item
-		between one bin and another at random. 
-		We do return the new solution
+		Make a random transition - in our case swap an item
+		between one bin and another. For large scale solution states
+		a better random number generator is recommended (It really is 
+		important).
+		 
+		Return the new solution
 	*/
 	this.random_transition = function( solution ) {
 		var rc = solution.slice( 0 );
