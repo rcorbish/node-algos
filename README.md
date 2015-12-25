@@ -35,8 +35,11 @@ Note the actual source code has more detail, this is a simple introduction.
 
 For BinPacking we subclass ( as best as we can in javascript ) the SimulatedAnnealing function
 
-// define the BinPacking class, it takes an argument the number of bins to fill up
+```javascript
 
+/**
+	define the BinPacking class, it takes an argument the number of bins to fill up
+*/
 function BinPacking( numBins ) {
 	this.numBins = numBins ;						// keep the arg - we'll use it frequently 
 	
@@ -91,6 +94,7 @@ function BinPacking( numBins ) {
 		return solution.map( function(e) { return e.reduce( function(p,c){ return p+c ;} )}).join( " " ) ;
 	}
 }
+```
 
 var algos = require( "algos" ) ;
 
