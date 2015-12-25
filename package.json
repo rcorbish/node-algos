@@ -1,0 +1,38 @@
+{
+  "name": "algos",
+  "description": "Simple implementation of basic algorithms.",
+  "version": "1.0.1",
+  "main": "lib/algos.js",
+  "keywords": [
+    "algorithm",
+    "framework",
+    "simulated annealing",
+    "backtracking"
+  ],
+  "author": "Richard Corbishley <rcorbish@hotmail.com> (rcorbish.ydns.eu)",
+  "contributors": [
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rcorbish/node-algos.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "node tests"
+  },
+  "bugs": {
+    "url": "https://github.com/rcorbish/node-algos/issues"
+  },
+  "homepage": "https://github.com/rcorbish/node-algos#readme",
+  "directories": {
+    "test": "test"
+  },
+  "license": "Unlicense"
+}
