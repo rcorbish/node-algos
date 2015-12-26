@@ -1,13 +1,14 @@
 {
   "name": "algos",
   "description": "Simple implementation of basic algorithms.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "lib/algos.js",
   "keywords": [
     "algorithm",
     "framework",
     "simulated annealing",
-    "backtracking"
+    "backtracking",
+    "graphs"
   ],
   "author": "Richard Corbishley <rcorbish@hotmail.com> (rcorbish.ydns.eu)",
   "contributors": [
