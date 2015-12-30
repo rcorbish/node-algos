@@ -27,6 +27,16 @@ becomes easy.
 - [Detailed documentation](Backtracking.md)
 - [External Reference](https://en.wikipedia.org/wiki/Backtracking)
 
+### PriorityQueue
+ 
+Some algorithms depend on maintaining a list of the cheapest items (esp. in graph traversal).
+A priority queue is used to hold the results. This implementation uses an array, which is
+kept in sorted order ( lowest is the last position in the array ). 
+
+- [Detailed documentation](PriorityQueue.md)
+- [External Reference](https://en.wikipedia.org/wiki/Priority_queue)
+
+
 ### Graphs
 
 When you have list of things that are related to one another - this provides a simple framework
