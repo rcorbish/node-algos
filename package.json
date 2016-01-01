@@ -1,14 +1,15 @@
 {
   "name": "algos",
   "description": "Simple implementation of basic algorithms.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "lib/algos.js",
   "keywords": [
     "algorithm",
-    "framework",
     "simulated annealing",
     "backtracking",
-    "graphs"
+    "graph",
+    "spanning tree",
+    "shortest path"
   ],
   "author": "Richard Corbishley <rcorbish@hotmail.com> (rcorbish.ydns.eu)",
   "contributors": [
