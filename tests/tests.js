@@ -1,5 +1,21 @@
 
-var algos = require( "algos" ) ;
+var algos = require( "../lib/algos.js" ) ;
+
+var pq = new algos.PriorityQueue() ;
+pq.add( 5 ) ;
+pq.add( 2 ) ;
+pq.add( 3 ) ;
+pq.add( 4 ) ;
+pq.add( 0 ) ;
+pq.add( 7 ) ;
+pq.add( 1 ) ;
+console.log( pq.toString() ) ;
+
+var graph = new algos.Graph( "A B C\nB C D\nC E F\nG A F\nE D\nF E", true ) ;
+graph.reset() ;
+//console.log( graph.toString() ) ;
+var mst = graph.minimumSpanningTree() ;
+console.log( "MST:\n", mst.toString() ) ;
 
 //S I M U L A T E D  A N N E A L I N G
 //S I M U L A T E D  A N N E A L I N G
@@ -51,7 +67,7 @@ console.log( "Bin packing test - make bins alomst as full as each other.") ;
 
 BinPacking.prototype = new algos.SimulatedAnnealing();  // Here's where the inheritance occurs 
 BinPacking.prototype.constructor=BinPacking;       		 
-var testBinPacking = new BinPacking( 30 ) ;
+var testBinPacking = new BinPacking( 20 ) ;
 var initial_solution = testBinPacking.initial_solution() ;
 
 var mx1 = initial_solution.map( function(e) { return e.reduce( function(p,e) { return e+p ;	}) ; })
