@@ -79,14 +79,6 @@ Depth first search. Search the graph depth first
 an edge is a JSON object having from (node), to (node) and weight(number) attributes
 
 #### Example
-```
-	var graph = new algos.Graph() ;
-	var a = new algos.Node( 'A' ) ;
-	var b = new algos.Node( 'B' ) ;
-	graph.add( a ) ;
-	graph.add( b ) ;
-	graph.addEdge( { from: a, to: b, weight: 100.0 } ) ;
-```
 
 
 This is an example of finding the shortest path. It can be used
