@@ -68,12 +68,14 @@ graph is treated like a weighted graph where all weights are 1.0.
 ```addNode( node )```
 a node is a JSON object that has a unique name within the graph. Yopu may add other attributes
 to the instance
-It exposes the following methods: 
+It exposes the following methods:
+ 
 ```bfs```
 Breadth first search. Search the graph breadth first  
+
 ```dfs```
 Depth first search. Search the graph depth first
-  
+ 
 
 ```addEdge( edge )```
 an edge is a JSON object having from (node), to (node) and weight(number) attributes
@@ -85,7 +87,6 @@ This is an example of finding the shortest path. It can be used
 as an example of dynamic node creation and defining the shortest path heuristic (for A*)
 
 
-```
 var algos = require( 'algos' ) ;
 
 var g = new algos.Graph() ;
@@ -126,7 +127,6 @@ var h = function(a,b) {
 var start = Date.now() ;
 g.shortestPath( "0,0", "520,302", h ).map( function(f) { return f.name ; } ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
-```
 
 ## General Use
 
