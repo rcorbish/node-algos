@@ -88,6 +88,52 @@ an edge is a JSON object having from (node), to (node) and weight(number) attrib
 	graph.addEdge( { from: a, to: b, weight: 100.0 } ) ;
 ```
 
+An example of finding he shortest path. This is not efficient
+but should be used as an example of dynamic node creation, shortest path heuristic (for A*)
+
+```
+var algos = require( 'algos' ) ;
+
+var g = new algos.Graph() ;
+
+for( var y=0 ; y<400 ; y++ ) {
+	var row = [] ;
+	for( var x=0 ; x<600 ; x++ ) {
+		var n = new algos.Node( x+","+y ) ;
+		if( y>0 ) {
+			var edge = { from: (x+","+y), to: (x+","+(y-1)), weight:1.5 } ;
+			g.addEdge( edge ) ;
+		}
+		if( x>0 ) {
+			var edge = { from: (x+","+y), to: ((x-1)+","+y), weight:1.1 } ;
+			g.addEdge( edge ) ;
+		}
+	}	 
+}
+
+var start = Date.now() ;
+g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ;
+console.log( "Took ", Date.now()-start, "mS." ) ;
+
+var start = Date.now() ;
+//console.log( g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ) ;
+g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ;
+console.log( "Took ", Date.now()-start, "mS." ) ;
+
+// An example heuristic. This is pretty expensive, if you do this
+// put x & y as attributes on a node. Parsing from the name makes this
+// worse than a Djikstra!
+var h = function(a,b) { 
+	var s = a.name.split(',') ;
+	var t = b.name.split(',') ;
+	return Math.sqrt( (s[0]-t[0]) * (s[0]-t[0]) + (s[1]-t[1]) * (s[1]-t[1]) ) ;  
+} ;
+
+var start = Date.now() ;
+g.shortestPath( "0,0", "520,302", h ).map( function(f) { return f.name ; } ) ;
+console.log( "Took ", Date.now()-start, "mS." ) ;
+```
+
 ## General Use
 
 First load the graphs (from text) as shown above.
