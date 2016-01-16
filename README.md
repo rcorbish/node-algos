@@ -45,9 +45,14 @@ to borrow algorithms that have been built up over many years.
 - [Detailed documentation](Graphs.md)
 - [External Reference](https://en.wikipedia.org/wiki/Graph_%28mathematics%29)
  
-## Examples
+### Combinatorics
 
-Look at tests/tests.js for some examples
+Helper methods to return combinations and permutations... 
+
+- [Detailed documentation](Combinatorics.md)
+- [External Reference](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
+ 
+
 
 
 
