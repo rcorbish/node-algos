@@ -88,8 +88,10 @@ an edge is a JSON object having from (node), to (node) and weight(number) attrib
 	graph.addEdge( { from: a, to: b, weight: 100.0 } ) ;
 ```
 
-An example of finding he shortest path. This is not efficient
-but should be used as an example of dynamic node creation, shortest path heuristic (for A*)
+
+This is an example of finding the shortest path. It can be used
+as an example of dynamic node creation and defining the shortest path heuristic (for A*)
+
 
 ```
 var algos = require( 'algos' ) ;
