@@ -1,7 +1,7 @@
 {
   "name": "algos",
   "description": "Simple implementation of basic algorithms.",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "main": "lib/algos.js",
   "keywords": [
     "algorithm",
