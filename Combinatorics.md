@@ -6,10 +6,10 @@
 
 When counting the ways to choose *r* items from a set of *n* items we have 2 choices to make before we can answer:
 - does the order of selection matter
--- if order is important use permutations
--- if order is not meaningful use combinations	 
+	- if order is important use permutations
+	- if order is not meaningful use combinations	 
 - can we repeat items from the set
--- if items may be pulled from the set repeatedly choose the repeat option of the methods
+	- if items may be pulled from the set repeatedly choose the repeat option of the methods
 
 
 ## General Use
@@ -58,7 +58,7 @@ calling this the first time.
 ## Example
 
 ```
-var algos = require( "../lib/algos.js" ) ;
+var algos = require( "algos" ) ;
 
 var c = algos.Combs ;
 console.log( c.combinations( 16,3  ) ) ;
