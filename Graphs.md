@@ -85,39 +85,41 @@ Depth first search. Search the graph depth first
 
 This is an example of finding the shortest path. It can be used
 as an example of dynamic node creation and defining the shortest path heuristic (for A*)
+The console shows the route taken - so you can see the algorithm working
 
 ```
-var algos = require( 'algos' ) ;
+var algos = require( '../Algos/lib/algos' ) ;
 
 var g = new algos.Graph() ;
-
-for( var y=0 ; y<400 ; y++ ) {
+var X = 100 ;
+var Y = 40 ;
+ 
+for( var y=0 ; y<Y ; y++ ) {
 	var row = [] ;
-	for( var x=0 ; x<600 ; x++ ) {
+	for( var x=0 ; x<X ; x++ ) {
 		var n = new algos.Node( x+","+y ) ;
 		if( y>0 ) {
-			var edge = { from: (x+","+y), to: (x+","+(y-1)), weight:1.5 } ;
+			var edge = { from: (x+","+y), to: (x+","+(y-1)), weight: Math.random() } ;
 			g.addEdge( edge ) ;
 		}
 		if( x>0 ) {
-			var edge = { from: (x+","+y), to: ((x-1)+","+y), weight:1.1 } ;
+			var edge = { from: (x+","+y), to: ((x-1)+","+y), weight: Math.random() } ;
 			g.addEdge( edge ) ;
 		}
 	}	 
 }
 
 var start = Date.now() ;
-g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ;
+var sp = g.shortestPath( "10,10", "70,30" );
+//console.log( sp.map( function(f) { return f.name ; } ).join(' ') ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
 
 var start = Date.now() ;
-//console.log( g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ) ;
-g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ;
+sp = g.shortestPath( "10,10", "70,30" );
+//console.log( sp.map( function(f) { return f.name ; } ).join(' ') ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
 
-// An example heuristic. This is pretty expensive, if you do this
-// put x & y as attributes on a node. Note this uses a Manhattan metric
-// since we cannot move diagonally!
+
 var h = function(a,b) { 
 	var s = a.name.split(',') ;
 	var t = b.name.split(',') ;
@@ -125,8 +127,24 @@ var h = function(a,b) {
 } ;
 
 var start = Date.now() ;
-g.shortestPath( "0,0", "520,302", h ).map( function(f) { return f.name ; } ) ;
+sp = g.shortestPath( "10,10", "70,30", h ) ;
+//console.log( sp.map( function(f) { return f.name ; } ).join(' ') ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
+
+var hits = {} ;
+for( var i=0 ; i<sp.length ; i++ ) {
+	hits[sp[i]] = true ;
+}
+
+//console.log( g.toString() ) ;
+for( var y=0 ; y<Y ; y++ ) {
+	var row = [] ;
+	for( var x=0 ; x<X ; x++ ) {
+		row.push( hits[  x+","+y ] ? '▪' : '┄' ) ;
+	}	
+	console.log( row.join( '' ) ) ;
+}
+
 ```
 
 ## General Use
