@@ -116,12 +116,12 @@ g.shortestPath( "0,0", "520,302" ).map( function(f) { return f.name ; } ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
 
 // An example heuristic. This is pretty expensive, if you do this
-// put x & y as attributes on a node. Parsing from the name makes this
-// worse than a Djikstra!
+// put x & y as attributes on a node. Note this uses a Manhattan metric
+// since we cannot move diagonally!
 var h = function(a,b) { 
 	var s = a.name.split(',') ;
 	var t = b.name.split(',') ;
-	return Math.sqrt( (s[0]-t[0]) * (s[0]-t[0]) + (s[1]-t[1]) * (s[1]-t[1]) ) ;  
+	return (t[0]-s[0]) + (t[1]-s[1]) ;  
 } ;
 
 var start = Date.now() ;
