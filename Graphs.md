@@ -65,20 +65,20 @@ graph is treated like a weighted graph where all weights are 1.0.
  
 ### API to create graphs
 
-```addNode( node )```
+*addNode( node )*
 a node is a JSON object that has a unique name within the graph. Yopu may add other attributes
 to the instance
 It exposes the following methods:
+
+*addEdge( edge )*
+an edge is a JSON object having from (node), to (node) and weight(number) attributes
  
-```bfs```
+*bfs*
 Breadth first search. Search the graph breadth first  
 
-```dfs```
+*dfs*
 Depth first search. Search the graph depth first
  
-
-```addEdge( edge )```
-an edge is a JSON object having from (node), to (node) and weight(number) attributes
 
 #### Example
 
@@ -86,7 +86,7 @@ an edge is a JSON object having from (node), to (node) and weight(number) attrib
 This is an example of finding the shortest path. It can be used
 as an example of dynamic node creation and defining the shortest path heuristic (for A*)
 
-
+```
 var algos = require( 'algos' ) ;
 
 var g = new algos.Graph() ;
@@ -127,6 +127,7 @@ var h = function(a,b) {
 var start = Date.now() ;
 g.shortestPath( "0,0", "520,302", h ).map( function(f) { return f.name ; } ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
+```
 
 ## General Use
 
@@ -134,14 +135,14 @@ First load the graphs (from text) as shown above.
 
 The following methods are then available on the graph
 
-```minimumSpanningTree```
+*minimumSpanningTree*
 Returns a minimum spanning tree for the given graph.
 It uses Kruskal's algorithm which is the most reasonable
 except for dense graphs with many vertices.
 
 - [Definition](https://en.wikipedia.org/wiki/Minimum_spanning_tree)
 
-```shortestPath```
+*shortestPath*
 Find the shortest path from across the graph using the A* algorithm. In order to be more
 efficient apply a heuristic test to see which nodes should be considered in the path. The 
 heuristic should return an actual cost not greater than the actual weight sum (don't 
