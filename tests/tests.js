@@ -1,6 +1,29 @@
 
 var algos = require( "../lib/algos.js" ) ;
 
+var x0 = algos.secantSolver( function(x) { return Math.exp(x/100) - (3.0*x*x*x) / x*x - 7.5 ; }, 10 ) ;
+//var x0 = algos.secantSolver( function(x) { return 12*x*x*x - 200*x*x -15  ; }, 100 ) ;
+console.log( x0 ) ;
+
+var x0 = algos.bisectionSolver( function(x) { return Math.exp(x/100) - (3.0*x*x*x) / x*x - 7.5 ; }, 10 ) ;
+//var x0 = algos.secantSolver( function(x) { return 12*x*x*x - 200*x*x -15  ; }, 100 ) ;
+console.log( x0 ) ;
+
+return 
+
+var c = algos.Combs ;
+console.log( c.combinations( 16,3  ) ) ;
+console.log( c.combinationsRepeat( 5,3  ) ) ;
+console.log( c.permutations( 5,3  ) ) ;
+console.log( c.permutationsRepeat( 5,3  ) ) ;
+
+var a = [1,2,3] ;
+console.log( a.join( ',' ) ) ;
+while( c.nextPermutation(a) ) {
+	console.log( a.join( ',' ) ) ;
+}
+return 
+
 var pq = new algos.PriorityQueue() ;
 pq.add( 5 ) ;
 pq.add( 2 ) ;
