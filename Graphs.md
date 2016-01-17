@@ -85,7 +85,7 @@ Depth first search. Search the graph depth first
 
 This is an example of finding the shortest path. It can be used
 as an example of dynamic node creation and defining the shortest path heuristic (for A*)
-The console shows the route taken - so you can see the algorithm working
+The console shows the route taken - so you can see the algorithm working.
 
 ```
 var algos = require( '../Algos/lib/algos' ) ;
@@ -93,7 +93,15 @@ var algos = require( '../Algos/lib/algos' ) ;
 var g = new algos.Graph() ;
 var X = 100 ;
 var Y = 40 ;
- 
+/*
+Create a graph that is a grid of horizontally and vertically connected nodes
+The size of the grid is defined by the X & Y constants.
+It works by creating a node named x,y - the co-ords of the node in the grid
+then defining an edge from above and left to this node.
+
+NB Graph.addEdge( e ) will create nodes if they are not present in the graph
+Each edge is assigned a random weight so we get pretty pictures at the end
+*/
 for( var y=0 ; y<Y ; y++ ) {
 	var row = [] ;
 	for( var x=0 ; x<X ; x++ ) {
@@ -109,17 +117,15 @@ for( var y=0 ; y<Y ; y++ ) {
 	}	 
 }
 
+// Use no heuristics to find the best path
 var start = Date.now() ;
 var sp = g.shortestPath( "10,10", "70,30" );
 //console.log( sp.map( function(f) { return f.name ; } ).join(' ') ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
 
-var start = Date.now() ;
-sp = g.shortestPath( "10,10", "70,30" );
-//console.log( sp.map( function(f) { return f.name ; } ).join(' ') ) ;
-console.log( "Took ", Date.now()-start, "mS." ) ;
 
-
+// Now define a heuristic to speed up comparison. This is not a true
+// performance test - the heuristic function is slow and memory inefficient
 var h = function(a,b) { 
 	var s = a.name.split(',') ;
 	var t = b.name.split(',') ;
@@ -131,6 +137,7 @@ sp = g.shortestPath( "10,10", "70,30", h ) ;
 //console.log( sp.map( function(f) { return f.name ; } ).join(' ') ) ;
 console.log( "Took ", Date.now()-start, "mS." ) ;
 
+// Now draw the grid - and the path we took
 var hits = {} ;
 for( var i=0 ; i<sp.length ; i++ ) {
 	hits[sp[i]] = true ;
