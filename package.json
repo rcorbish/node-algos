@@ -1,7 +1,7 @@
 {
   "name": "algos",
   "description": "Simple implementation of basic algorithms.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "lib/algos.js",
   "keywords": [
     "algorithm",
@@ -11,7 +11,9 @@
     "spanning tree",
     "shortest path",
     "combinations",
-    "permutations"
+    "permutations",
+    "secant method",
+    "bisection method"
   ],
   "author": "Richard Corbishley <rcorbish@hotmail.com> (rcorbish.ydns.eu)",
   "contributors": [
