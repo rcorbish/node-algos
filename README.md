@@ -52,6 +52,18 @@ Helper methods to return combinations and permutations...
 - [Detailed documentation](Combinatorics.md)
 - [External Reference](https://www.mathsisfun.com/combinatorics/combinations-permutations.html)
  
+### Solvers
+To solve a function f(x)=0 for a value of x, use this. 
+
+The secant solver can be considerably faster - providing the function converges. The
+bisectionSolver is a binary search for the solution. Both functions require passing in 
+reasonable starting guesses.
+
+```
+var algos = require( "algos" ) ;
+var x0 = algos.secantSolver( function(x) { return Math.exp(x/100) - (3.0*x*x*x) / x*x - 7.5 } ) ;
+var x1 = algos.bisectionSolver( function(x) { return Math.exp(x/100) - (3.0*x*x*x) / x*x - 7.5 } ) ;
+```
 
 ## Licence 
 
