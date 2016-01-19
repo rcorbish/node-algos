@@ -1,5 +1,65 @@
 
+
+
 var algos = require( "../lib/algos.js" ) ;
+
+var g = new algos.Graph() ;
+var X = 50 ;
+var Y = 50 ;
+
+var w = 0 ;
+for( var y=0 ; y<Y ; y++ ) {
+        var row = [] ;
+        for( var x=0 ; x<X ; x++ ) {
+                var n = new algos.Node( x+","+y ) ;
+                if( y>0 ) {
+                        var edge = { from: (x+","+y), to: (x+","+(y-1)), weight: Math.random() } ;
+                        g.addEdge( edge ) ;
+                }
+                if( x>0 ) {
+                        var edge = { from: (x+","+y), to: ((x-1)+","+y), weight: Math.random() } ;
+                        g.addEdge( edge ) ;
+                }
+        }
+}
+var h = function(a,b) {
+    var s = a.name.split(',') ;
+    var t = b.name.split(',') ;
+    return (t[0]-s[0]) + (t[1]-s[1]) ;
+} ;
+
+var sp = g.shortestPath( "8,8", (X-8)+","+(Y-8), h ) ;
+var hits = {} ;
+for( var i=0 ; i<sp.length ; i++ ) {
+        hits[sp[i]] = true ;
+}
+
+//console.log( g.toString() ) ;
+for( var y=0 ; y<Y ; y++ ) {
+        var row = [] ;
+        for( var x=0 ; x<X ; x++ ) {
+                row.push( hits[  x+","+y ] ? '▪' : '┄' ) ;
+        }
+        console.log( row.join( '' ) ) ;
+}
+
+var mst = g.minimumSpanningTree() ;
+console.log( "MST:\n", mst.toString() )
+
+var edgeSet = {} ; 
+for( var nodeName of Object.keys(mst.nodes) ) {
+	var node = mst.nodes[nodeName] ;
+	for( var edge of node.neighbours ) {
+		var f = edge.from ;
+		var t = edge.to ;
+		if( f<t ) { edgeSet[f+'-'+t] = true ; } 
+		else      { edgeSet[t+'-'+f] = true ; } 		
+	}
+} 
+//console.log( "MST-LEN:", Object.keys( edgeSet ).join(' - ' ) ) ;
+console.log( "MST-LEN:", Object.keys( edgeSet ).length ) ;
+
+return 
 
 var x0 = algos.secantSolver( function(x) { return Math.exp(x/100) - (3.0*x*x*x) / x*x - 7.5 ; }, 10 ) ;
 //var x0 = algos.secantSolver( function(x) { return 12*x*x*x - 200*x*x -15  ; }, 100 ) ;
