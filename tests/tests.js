@@ -4,8 +4,8 @@
 var algos = require( "../lib/algos.js" ) ;
 
 var g = new algos.Graph() ;
-var X = 50 ;
-var Y = 50 ;
+var X = 100 ;
+var Y = 20 ;
 
 var w = 0 ;
 for( var y=0 ; y<Y ; y++ ) {
@@ -43,10 +43,16 @@ for( var y=0 ; y<Y ; y++ ) {
         console.log( row.join( '' ) ) ;
 }
 
+var start = Date.now() ;
 var mst = g.minimumSpanningTree() ;
-console.log( "MST:\n", mst.toString() )
+//console.log( "MST:\n", mst.toString() )
+var delta = Date.now() - start ;
+console.log( "MST in", delta, "mS." ) ;
 
-var edgeSet = {} ; 
+var edgeSet = [ ' ', '╵', '╶', '└', 
+                '╷', '│', '┌', '├',
+                '╴', '┘', '─', '┴',
+                '┐', '┤', '┬', '┼'	] ; 
 for( var nodeName of Object.keys(mst.nodes) ) {
 	var node = mst.nodes[nodeName] ;
 	for( var edge of node.neighbours ) {
@@ -57,8 +63,28 @@ for( var nodeName of Object.keys(mst.nodes) ) {
 	}
 } 
 //console.log( "MST-LEN:", Object.keys( edgeSet ).join(' - ' ) ) ;
-console.log( "MST-LEN:", Object.keys( edgeSet ).length ) ;
 
+var connectionCharacters = []
+for( var y=0 ; y<Y ; y++ ) {
+    var row = [] ;
+    for( var x=0 ; x<X ; x++ ) {
+    		var n = mst.nodes[ x+","+y ] ;
+    		var mask = 0 ;
+    		var N = x+","+(y-1)  ;
+    		var S = x+","+(y+1)  ;
+    		var W = (x-1)+","+y  ;
+    		var E = (x+1)+","+y  ;
+    		for( var neighbour of n.neighbours ) {
+    			if( neighbour.to.name === N ) { mask |= 1 ; }
+    			if( neighbour.to.name === E ) { mask |= 2 ; }
+    			if( neighbour.to.name === S ) { mask |= 4 ; }
+    			if( neighbour.to.name === W ) { mask |= 8 ; }
+    		}
+            row.push( edgeSet[mask] ) ;
+    }
+    console.log( row.join( '' ) ) ;
+}
+console.log( "MST-LEN:", Object.keys( edgeSet ).length ) ;
 return 
 
 var x0 = algos.secantSolver( function(x) { return Math.exp(x/100) - (3.0*x*x*x) / x*x - 7.5 ; }, 10 ) ;
