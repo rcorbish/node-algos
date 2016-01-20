@@ -17,7 +17,7 @@ for( var y=0 ; y<Y ; y++ ) {
                         g.addEdge( edge ) ;
                 }
                 if( x>0 ) {
-                        var edge = { from: (x+","+y), to: ((x-1)+","+y), weight: Math.random() } ;
+                        var edge = { from: (x+","+y), to: ((x-1)+","+y), weight: 2*Math.random() } ;
                         g.addEdge( edge ) ;
                 }
         }
@@ -28,7 +28,7 @@ var h = function(a,b) {
     return (t[0]-s[0]) + (t[1]-s[1]) ;
 } ;
 
-var sp = g.shortestPath( "8,8", (X-8)+","+(Y-8), h ) ;
+var sp = g.shortestPath( "1,1", (X-2)+","+(Y-2), h ) ;
 var hits = {} ;
 for( var i=0 ; i<sp.length ; i++ ) {
         hits[sp[i]] = true ;
@@ -44,15 +44,18 @@ for( var y=0 ; y<Y ; y++ ) {
 }
 
 var start = Date.now() ;
-var mst = g.minimumSpanningTree() ;
+var mst = g.minimumSpanningTreePrimm() ;
 //console.log( "MST:\n", mst.toString() )
 var delta = Date.now() - start ;
 console.log( "MST in", delta, "mS." ) ;
 
-var edgeSet = [ ' ', '╵', '╶', '└', 
+var connectionSet = [ ' ', '╵', '╶', '└', 
                 '╷', '│', '┌', '├',
                 '╴', '┘', '─', '┴',
-                '┐', '┤', '┬', '┼'	] ; 
+                '┐', '┤', '┬', '┼'	] ;
+var edgeColors = [ '\033[30m', '\033[37m', '\033[35m', '\033[36m', '\033[34m', '\033[33m', '\033[32m', '\033[31m' ] ;
+
+var edgeSet = {}
 for( var nodeName of Object.keys(mst.nodes) ) {
 	var node = mst.nodes[nodeName] ;
 	for( var edge of node.neighbours ) {
@@ -74,13 +77,16 @@ for( var y=0 ; y<Y ; y++ ) {
     		var S = x+","+(y+1)  ;
     		var W = (x-1)+","+y  ;
     		var E = (x+1)+","+y  ;
-    		for( var neighbour of n.neighbours ) {
-    			if( neighbour.to.name === N ) { mask |= 1 ; }
-    			if( neighbour.to.name === E ) { mask |= 2 ; }
-    			if( neighbour.to.name === S ) { mask |= 4 ; }
-    			if( neighbour.to.name === W ) { mask |= 8 ; }
+    		var weightTotal = 0 ;
+    		for( var edge of n.neighbours ) {
+    			weightTotal += edge.weight ;
+    			if( edge.to.name === N ) { mask |= 1 ; }
+    			if( edge.to.name === E ) { mask |= 2 ; }
+    			if( edge.to.name === S ) { mask |= 4 ; }
+    			if( edge.to.name === W ) { mask |= 8 ; }
     		}
-            row.push( edgeSet[mask] ) ;
+    		var color = edgeColors[ Math.min( 7, Math.floor(weightTotal*4) ) ] ;
+            row.push( color+connectionSet[mask]+"\033[39m" ) ;
     }
     console.log( row.join( '' ) ) ;
 }

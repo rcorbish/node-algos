@@ -167,6 +167,12 @@ except for dense graphs with many vertices.
 
 - [Definition](https://en.wikipedia.org/wiki/Minimum_spanning_tree)
 
+*minimumSpanningTreePrimm*
+Returns a minimum spanning tree for the given graph.
+It uses Primm's algorithm which may be better in some cases than
+the above implementation.
+
+
 *shortestPath*
 Find the shortest path from across the graph using the A* algorithm. In order to be more
 efficient apply a heuristic test to see which nodes should be considered in the path. The 
