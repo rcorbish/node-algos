@@ -4,7 +4,7 @@
 var algos = require( "../lib/algos.js" ) ;
 
 var g = new algos.Graph() ;
-var X = 100 ;
+var X = 80 ;
 var Y = 20 ;
 
 var w = 0 ;
@@ -38,7 +38,7 @@ for( var i=0 ; i<sp.length ; i++ ) {
 for( var y=0 ; y<Y ; y++ ) {
         var row = [] ;
         for( var x=0 ; x<X ; x++ ) {
-                row.push( hits[  x+","+y ] ? '▪' : '┄' ) ;
+                row.push( hits[  x+","+y ] ? 'X' : '-' ) ;
         }
         console.log( row.join( '' ) ) ;
 }
@@ -53,7 +53,6 @@ var connectionSet = [ ' ', '╵', '╶', '└',
                 '╷', '│', '┌', '├',
                 '╴', '┘', '─', '┴',
                 '┐', '┤', '┬', '┼'	] ;
-var edgeColors = [ '\033[30m', '\033[37m', '\033[35m', '\033[36m', '\033[34m', '\033[33m', '\033[32m', '\033[31m' ] ;
 
 var edgeSet = {}
 for( var nodeName of Object.keys(mst.nodes) ) {
@@ -85,8 +84,7 @@ for( var y=0 ; y<Y ; y++ ) {
     			if( edge.to.name === S ) { mask |= 4 ; }
     			if( edge.to.name === W ) { mask |= 8 ; }
     		}
-    		var color = edgeColors[ Math.min( 7, Math.floor(weightTotal*4) ) ] ;
-            row.push( color+connectionSet[mask]+"\033[39m" ) ;
+            row.push( connectionSet[mask] ) ;
     }
     console.log( row.join( '' ) ) ;
 }
