@@ -60,8 +60,8 @@ For BinPacking we subclass ( as best as we can in javascript ) the SimulatedAnne
 function BinPacking( numBins ) {
 	this.numBins = numBins ;						 
 	/**
-	Initial solution function defines the starting state. This is just something 
-	silly for testing.
+	Initial solution function defines the starting state. Each bin gets 6 items - each 
+	costing the bin number: bin0 contains 0,0,0,0,0,0  ... bin1 contains 1,1,1,1,1,1  ... binN contains N,N,N,N,N,N
 	*/
 	this.initial_solution = function() {		
 		var bins = [] ;		// this is the solution state
@@ -75,7 +75,10 @@ function BinPacking( numBins ) {
 		how much does a solution cost. Make sure you have a 
 		metric that measures the effective energy of a solution
 	*/
-	this.solution_cost = function( solution ) {		
+	this.solution_cost = function( solution ) {
+		// The cost of this solution is the maximum value of items in 
+		// any bin. If we want an even division - keep this 'cost' 
+		// low.
 		var rc = 0 ;
 		for( var i=0 ; i<numBins ; i++ ) {
 			var binTotal = 0 ;
